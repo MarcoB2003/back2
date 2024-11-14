@@ -1,0 +1,59 @@
+
+CREATE DATABASE catalogoLivrosDB; -- Nome do banco de dados
+USE catalogoLivrosDB;
+
+
+CREATE TABLE tb_livro (
+id_livro INT PRIMARY KEY AUTO_INCREMENT,
+titulo VARCHAR(200),
+sinopse VARCHAR(4000),
+preco DECIMAL(15,2),
+dt_lancamento DATE,
+em_estoque BOOLEAN,
+img_livro VARCHAR(800) -- Campo para imagem do livro, caso necessário
+);
+
+CREATE TABLE tb_venda (
+id_venda INT PRIMARY KEY AUTO_INCREMENT,
+nome_cliente VARCHAR(300),
+data_venda DATE,
+nome_livro VARCHAR(200),
+quantidade INT,
+valor_venda DECIMAL(15,2)
+);
+
+CREATE TABLE tb_usuario (
+id_usuario       int primary key auto_increment,
+//nm_usuario       varchar(300),
+ds_email     varchar(300),
+ds_senha   varchar(300)
+);
+
+INSERT INTO tb_livro (titulo, sinopse, preco, dt_lancamento, em_estoque, img_livro)
+VALUES (?, ?, ?, ?, ?, ?); -- Adicionando img_livro se necessário
+
+SELECT id_livro,
+titulo,
+sinopse,
+preco,
+dt_lancamento,
+em_estoque,
+img_livro
+FROM tb_livro;
+
+SELECT id_venda,
+nome_cliente,
+data_venda,
+nome_livro,
+quantidade,
+valor_venda
+FROM tb_venda;
+
+ 
+UPDATE tb_livro
+SET titulo = ?, sinopse = ?, preco = ?, dt_lancamento = ?, em_estoque = ?
+WHERE id_livro = ?; -- Condição correta
+
+DELETE FROM tb_livro WHERE id_livro = ?;
+
+SHOW TABLES
